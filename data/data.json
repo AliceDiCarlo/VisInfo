@@ -1,62 +1,62 @@
 [
     {
-        "corpo": 10,
-        "occhio": 1,
-        "bocca": 2,
-        "coda": 4
+        "corpo": 20,
+        "occhio": 4,
+        "bocca": 3,
+        "coda": 12
     },
     {
-        "corpo": 10,
-        "occhio": 1,
-        "bocca": 2,
-        "coda": 4
+        "corpo": 13,
+        "occhio": 2,
+        "bocca": 1,
+        "coda": 11
     },
     {
-        "corpo": 10,
-        "occhio": 1,
-        "bocca": 2,
-        "coda": 4
+        "corpo": 24,
+        "occhio": 7,
+        "bocca": 5,
+        "coda": 9
     },
     {
-        "corpo": 10,
-        "occhio": 1,
-        "bocca": 2,
-        "coda": 4
+        "corpo": 43,
+        "occhio": 20,
+        "bocca": 15,
+        "coda": 23
     },
     {
-        "corpo": 10,
-        "occhio": 1,
-        "bocca": 2,
-        "coda": 4
+        "corpo": 17,
+        "occhio": 8,
+        "bocca": 10,
+        "coda": 10
     },
     {
-        "corpo": 10,
-        "occhio": 1,
-        "bocca": 2,
-        "coda": 4
+        "corpo": 121,
+        "occhio": 30,
+        "bocca": 25,
+        "coda": 76
     },
     {
-        "corpo": 10,
-        "occhio": 1,
-        "bocca": 2,
-        "coda": 4
+        "corpo": 100,
+        "occhio": 26,
+        "bocca": 29,
+        "coda": 40
     },
     {
-        "corpo": 10,
-        "occhio": 1,
-        "bocca": 2,
-        "coda": 4
+        "corpo": 213,
+        "occhio": 29,
+        "bocca": 40,
+        "coda": 56
     },
     {
-        "corpo": 10,
+        "corpo": 8,
         "occhio": 1,
-        "bocca": 2,
-        "coda": 4
+        "bocca": 1,
+        "coda": 8
     },
     {
-        "corpo": 10,
-        "occhio": 1,
-        "bocca": 2,
-        "coda": 4
+        "corpo": 69,
+        "occhio": 57,
+        "bocca": 34,
+        "coda": 61
     }
 ]
