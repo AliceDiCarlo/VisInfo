@@ -1,2 +1,2 @@
 # VisInfo
-Progetto per il corso di viualizzazione dell'informazioni
+Progetto per il corso di visualizzazione delle informazioni
