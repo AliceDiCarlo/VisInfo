@@ -6,21 +6,24 @@ var delayTime = 1000,
 */
 
 
-/* ****************
- settings display and screens
- **************** */
+ /*  Display Settings */
 
 //margini
-var margin = {top: 10, right: 60, bottom: 40, left: 20};
-// var margin = {top: 20, right: 20, bottom: 30, left: 40};
+var margin = {top: 30, right: 62, bottom: 20, left: 80};
 
 
-// screen 800x 300 o 1600x900
+
+// screen 1024×768
 //define the margins
-var width = 1600 - margin.left - margin.right;
-var height = 900 - margin.top - margin.bottom;
 
-/* 
-var width = 800 - margin.left - margin.right;
-var height = 300 - margin.top - margin.bottom;
-*/
+var width = 1280 - margin.left - margin.right;
+var height = 768 - margin.top - margin.bottom;
+
+
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)     
+    .attr("height", height + margin.top + margin.bottom)  
+    .style("background","blue")    
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); 
+
