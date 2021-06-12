@@ -1,11 +1,4 @@
 
-var delayTime = 10;
-/*
-var delayTime = 1000,
-    updateTime = 500;
-*/
-
-
  /*  Display Settings */
 
 var margin = {top: 30, right: 62, bottom: 20, left: 80};
@@ -15,12 +8,10 @@ var margin = {top: 30, right: 62, bottom: 20, left: 80};
 var width = 1280 - margin.left - margin.right;
 var height = 768 - margin.top - margin.bottom;
 
-
-
-//creo un array di colori
-var colors =["#FF00FF","#FF7F50","#00FFFF","#006400","#A9A9A9","#008080","#FFFF00","#808000","#CD853F","#4682B4"];
+// fishes colors
+var colors =["#FF11FF","#FF7F53","#00FFFB","#006466","#A9A9A9","#008080","#FFFF00","#808000","#CD853F","#4682B4"];
  
-// creo l'elemento svg
+// SVG
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)     
     .attr("height", height + margin.top + margin.bottom)  
@@ -29,29 +20,8 @@ var svg = d3.select("body").append("svg")
 
 
 
-// restituisce il massimo di ogni proprietà del dataset
-function scaler(dataset,key){
-	var tmp = [];
-	dataset.forEach( function (d) {
-		tmp.push(d[key]);
-	});
-	return Math.max.apply(null,tmp);
-}
 
 
-// controllo se i pesci sono vicini tra loro sfruttando la distanza euclidea 
-// tra i centri di due pesci la volta distanzio i pesci di 250 minimo
-function isNear(centerX,centerY,nearsX,nearsY){
-	var i=0
-	while(i<=nearsX.length){
-		if( Math.sqrt( Math.pow(nearsX[i]-centerX,2)+(Math.pow(nearsY[i]-centerY,2)) )  < 220 ){
-			return true;
-		}
-		i++;
-	}
-
-	return false;
-}
 // creo due array in cui andrò a mettere le posizioni di tutti i pesci
 var nearsX = [];
 var nearsY = [];
@@ -97,33 +67,29 @@ function drawFish(dataset,i,color,dom,centerX,centerY){
 	var max = Math.max.apply(null,domValues);
 
 	//mappo il dominio in input in un range in output stabilito in base alle dimensioni dell'svg
-	var bodyScaler = d3.scaleLinear().range([40,130]).domain([0,dom["corpo"]]);
+	var bodyScaler = d3.scaleLinear().range([50,100]).domain([0,dom["body"]]);
 	var bodyLength =  bodyScaler(dataset["corpo"]);
-	console.log("Dom corpo"+dom["corpo"]);
-	console.log("Dom "+dom["corpo"]);
+	
+	console.log("Dom corpo"+dom["body"]);
+	console.log(dom);
 	console.log(bodyLength);
 
 
-	var mouthScaler = d3.scaleLinear().range([15,50]);
-	mouthScaler.domain([0,dom["bocca"]]);
+	var mouthScaler = d3.scaleLinear().range([17,45]).domain([0,dom["mouth"]]);
 	var mouth = mouthScaler(dataset["bocca"]);
-	console.log("Dom bocca"+dom["bocca"]);
+	
+	console.log("Dom bocca"+dom["mouth"]);
 	console.log(bodyLength);
 
 
 
-
-	var finScaler = d3.scaleLinear().range([20,100]);
-	finScaler.domain([0,dom["coda"]]);
+	var finScaler = d3.scaleLinear().range([0,80]).domain([0,dom["fins"]]);
 	var tailWidth = finScaler(dataset["coda"]);
 	var tailHeight = tailWidth/2;
 
 
 
-	var eyeScaler = d3.scaleLinear().range([10,44]);
-
-					   
-	eyeScaler.domain([0,dom["occhio"]]);   
+	var eyeScaler = d3.scaleLinear().range([10,40]).domain([0,dom["eye"]]);   
 	var eye = eyeScaler(dataset["occhio"]);
 
 	//
@@ -140,8 +106,7 @@ function drawFish(dataset,i,color,dom,centerX,centerY){
 	var padFin = j; // serve per posizionare la pinna laterale
 	var padMouth = 1; // serve per posizionare la bocca
 
-	
-
+	var delayTime = 10;
 	//usando la funzione seInterval creo l'animazione
 	setInterval(function(){
 		//quando raggiungo il massimo tra i valori di corpo pinne occhio e bocca conclucod l'animazione
@@ -213,8 +178,8 @@ function drawFish(dataset,i,color,dom,centerX,centerY){
 			.attr("id",i)
 			.attr("onclick","modifyFishes(event)")
 			.attr("points",""+(centerX-b/2-b*0.5)+","+(centerY)+" "+(centerX-th-tw-padTail-b*0.5)+","+(centerY-th)+" "+(centerX-th-tw-padTail-b*0.5)+","+(centerY+th)+"")
-			.attr("fill","red")
-            .attr("stroke","red")
+			.attr("fill","purple")
+            .attr("stroke","black")
            
 
 
@@ -240,8 +205,8 @@ function drawFish(dataset,i,color,dom,centerX,centerY){
 			.attr("id",i)
 			.attr("onclick","modifyFishes(event)")
 			.attr("points",""+(centerX-padFin+tw/2)+","+(centerY)+" "+(centerX+tw/2)+","+(centerY)+" "+(centerX+10+tw/2)+","+( centerY+30))
-			.attr("fill","red")
-			.attr("stroke","red")
+			.attr("fill","purple")
+			.attr("stroke","black")
 			.attr("transform", function(d){
 				var scale_factor = tw/dom.fins;
 				return  "translate(" + ( centerX+tw/2+ fins_offsetX)+ "," + ( centerY)+ ")"
@@ -256,11 +221,11 @@ function drawFish(dataset,i,color,dom,centerX,centerY){
 			.attr("class", "fish_"+i)
 			.attr("id",i)
 			.attr("onclick","modifyFishes(event)")
-			.attr("cx",centerX+b/6+40)
+			.attr("cx",(centerX+b/6)+6)
 			.attr("cy", centerY-b/6)
 			.attr("r",ey/3)
 			.attr("fill","black")
-			.attr("stroke","red");
+			.attr("stroke","green");
 
 
 			//bocca
@@ -273,8 +238,8 @@ function drawFish(dataset,i,color,dom,centerX,centerY){
 			.attr("cy", centerY+b/5)
 			.attr("rx", m/2)
 			.attr("ry", m/2-padMouth)
-			.attr("fill","black")
-			.attr("stroke","black");
+			.attr("fill","brown")
+			.attr("stroke","brown");
 
 			j++;
 		}
@@ -283,22 +248,24 @@ function drawFish(dataset,i,color,dom,centerX,centerY){
 }
 
 // creo un dizionario con le proprietà del pesce
-var toDomain = {corpo: 0, occhio: 0, bocca: 0, coda: 0};
+var toDomain = {body: 0, eye: 0, mouth: 0, fins: 0};
 d3.json("data/data.json")
 	.then(function(data) {
 
 	// metto le chiavi del dizionario in un array e per ogni proprietà prendo il massimo
 	// chiamando la funzione scaler sopra definita
 	var keys = Object.keys(toDomain);
-		toDomain.body=scaler(data,keys[0]);
-		toDomain.eye=scaler(data,keys[1]);
-		toDomain.mouth=scaler(data,keys[2]);
-		toDomain.fins=scaler(data,keys[3]);
+		toDomain.body=scaler(data,"corpo");
+		toDomain.eye=scaler(data,"occhio");
+		toDomain.mouth=scaler(data,"bocca");
+		toDomain.fins=scaler(data,"coda");
 
 	// richiamo la funzione drawfish per tutti i datapoint del file json
 	var counter=0;
 	setInterval(function(){
 				if (data[counter]){
+
+					
 					drawFish(data[counter],counter,colors[counter],toDomain,null,null);
 					counter++;
 				}
@@ -363,4 +330,46 @@ function modifyFishes(e){
 	   }
 	}
 
+}
+
+
+/* Method */
+
+
+
+/**
+ * method that return the max value in a dataset from the key
+ * @param {object} values 
+ * @param {string} key 
+ * @returns int
+ */
+ function scaler(values,key){
+	var tmp = [];
+	values.forEach( function (d) {
+		tmp.push(d[key]);
+	});
+	return Math.max.apply(null,tmp);
+}
+
+/**
+ * Method that returns true when the center of an object is far enough away from other objects already on the screen
+ * @param {int} centerObX 
+ * @param {int} centerObY 
+ * @param {Array} nearsX 
+ * @param {Array} nearsY 
+ * @returns {boolean} 
+ */
+ function isNear(centerObX,centerObY,nearsX,nearsY){
+	var i=0
+
+	//for each obj in the Array (screen)
+	while(i<=nearsX.length){
+		//Calculate the distance between two points
+		if( Math.pow(nearsX[i]-centerObX,2)+(Math.pow(nearsY[i]-centerObY,2) )  < Math.pow(220, 2) ){
+			return true;
+		}
+		i++;
+	}
+
+	return false;
 }
